@@ -34,10 +34,9 @@
                 <md-list class="md-triple-line">
                     <div v-for="i in filteredList"
                          v-bind:key="i.slug">
-                        <md-list-item>
+                        <md-list-item :to="i.slug">
                             <md-avatar v-bind:class="i.status">
                             </md-avatar>
-
                             <div class="md-list-item-text">
                                 <span>{{i.name}}</span>
                                 <p>{{i.teaser}}</p>
@@ -101,9 +100,11 @@
             },
             setFilter(filter) {
                 this.filter = filter;
+                this.menuVisible = false;
             }
         },
         created() {
+            if (this.getDapps.length > 0) return;
             this.fetchDappList();
         }
     };
@@ -148,33 +149,4 @@
         width: 230px;
         max-width: calc(100vw - 125px);
     }
-
-    .all {
-        border: 2px solid #fff;
-    }
-
-    .live {
-        background: greenyellow;
-    }
-
-    .beta {
-        background: aqua;
-    }
-
-    .prototype {
-        background: blue;
-    }
-
-    .wip {
-        background: orange;
-    }
-
-    .concept {
-        background: bisque;
-    }
-
-    .stealth {
-        background: red;
-    }
-
 </style>
